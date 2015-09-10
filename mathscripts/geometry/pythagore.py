@@ -39,18 +39,18 @@ class Pythagore(TemplateExercice):
     def create_enonce(self, name, value, rect, rectangle):
         name_temp = list(name)
         string_output = ""
-        string_output += "Soit un triangle $%s%s%s$ rectangle en $%s$ tel que :\n" % (name[0], name[1], name[2], name[rect])
+        string_output += "Soit un triangle $%s%s%s$ rectangle en $%s$ tel que :" % (name[0], name[1], name[2], name[rect])
         main_sommet = name_temp.pop(rect)
         hyp = name_temp[0] + name_temp[1]
         c1 = main_sommet + name_temp.pop()
         c2 = main_sommet + name_temp.pop()
         # if 1 hyp unknown
         if rectangle:
-            string_output += "$%s = %s$ cm et $%s = %s$ cm.\n" % (c1, value[0], c2, value[1])
+            string_output += "\\[%s = %s~cm\ et\ %s = %scm\\]" % (c1, value[0], c2, value[1])
             string_output += "Quelle est la longueur de $%s$ ?" % hyp
         # if 0 hyp known
         else:
-            string_output += "$%s = %s$ cm et $%s = %s$ cm.\n" % (hyp, value[2], c2, value[1])
+            string_output += "\\[%s = %s~cm\ et\ %s = %scm\\]" % (hyp, value[2], c2, value[1])
             string_output += "Quelle est la longueur de $%s$ ?" % c1
         return string_output
 
@@ -74,8 +74,8 @@ class Pythagore(TemplateExercice):
     def generate_exercise_raw(self):
         u, v = 0.0, 0.0
         while (u==0.0) or (v==0.0) or (u==v):
-            u = random.randint(1, 10) / 5.0
-            v = random.randint(1, 10) / 5.0
+            u = random.randint(1, 10) / 2.0
+            v = random.randint(1, 10) / 2.0
             v, u = min(u, v), max(u, v)
         return [u ** 2 - v ** 2, 2 * u * v, u ** 2 + v ** 2]
 

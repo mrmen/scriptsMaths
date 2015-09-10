@@ -8,7 +8,7 @@ class TemplateExercice:
         self.listeSolution = []
         self.nbExercice = 5
         self.nbQuestion = 10
-        self.package = ["amsmath", "amssymb", "inputenc", "fontenc", "geometry", "xlop"]
+        self.package = ["amsmath", "amssymb", "inputenc", "fontenc", "geometry", "xlop", "multicol"]
 
     @staticmethod
     def format_exercice(exercice, exercise_type):
@@ -45,7 +45,7 @@ class TemplateExercice:
             line += "{" + package + "}"
             print(line)
         print("\\newtheorem{exercice}{Exercice}")
-        print("\\newtheorem{solution}{Solution}")
+        print("\\newtheorem{solution}{Solution de l'exercice }")
         print("\\begin{document}")
 
     @staticmethod
@@ -59,6 +59,8 @@ class TemplateExercice:
         self.print_enonce()
         # TODO fix this part
         print("\\newpage")
+        print("\\begin{multicols}{2}")
         # TODO
         self.print_solution()
+        print("\\end{multicols}")
         self.print_postamble()
