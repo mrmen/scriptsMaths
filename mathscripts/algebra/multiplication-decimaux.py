@@ -1,10 +1,11 @@
 __author__ = 'mrmen'
 
+
 from TemplateExercice import *
 import random
 
 
-class AdditionDecimaux(TemplateExercice):
+class MultiplicationDecimaux(TemplateExercice):
     def __init__(self):
         TemplateExercice.__init__(self)
         self.min = 10
@@ -22,12 +23,12 @@ class AdditionDecimaux(TemplateExercice):
                 second = random.randint(self.min, self.max)
                 exp2 = random.randint(-2,-1)
 
-                tempenonce.append("%s + %s " % (first*10**exp1, second*10**exp2))
-                tempsolution.append("\\opadd{%s}{%s}" % (first*10**exp1, second*10**exp2))
+                tempenonce.append("%s \\times %s " % (first*10**exp1, second*10**exp2))
+                tempsolution.append("\\opmul{%s}{%s}" % (first*10**exp1, second*10**exp2))
             self.listeEnonce.append(tempenonce)
             self.listeSolution.append(tempsolution)
 
 
 if __name__ == "__main__":
-    app = AdditionDecimaux()
+    app = MultiplicationDecimaux()
     app.display()
