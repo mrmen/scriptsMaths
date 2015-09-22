@@ -4,7 +4,7 @@ from TemplateExercice import *
 import random
 
 
-class AdditionDecimaux(TemplateExercice):
+class Division(TemplateExercice):
     def __init__(self):
         TemplateExercice.__init__(self)
         self.min = 10
@@ -18,16 +18,14 @@ class AdditionDecimaux(TemplateExercice):
             tempsolution = []
             for question in range(self.nbQuestion):
                 first = random.randint(self.min, self.max)
-                exp1 = random.randint(-3,-1)
                 second = random.randint(self.min, self.max)
-                exp2 = random.randint(-2,-1)
-
-                tempenonce.append("%s + %s " % (first*10**exp1, second*10**exp2))
-                tempsolution.append("\\opadd{%s}{%s}" % (first*10**exp1, second*10**exp2))
+                first, second = max(first, second), min(first, second)
+                tempenonce.append("%s \\div %s" % (first, second))
+                tempsolution.append("\\shadowbox{\\opdiv[displayshiftintermediary=all,displayintermediary=nonzero,hfactor=decimal]%s}{%s}}" % (first, second))
             self.listeEnonce.append(tempenonce)
             self.listeSolution.append(tempsolution)
 
 
 if __name__ == "__main__":
-    app = AdditionDecimaux()
+    app = Division()
     app.display()

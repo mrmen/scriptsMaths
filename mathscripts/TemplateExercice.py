@@ -56,7 +56,10 @@ class TemplateExercice:
     def display(self):
         """display the whole exercise according to previous functions"""
         self.print_preamble()
+        print("\\begin{multicols}{2}")
+        # TODO
         self.print_enonce()
+        print("\\end{multicols}")
         # TODO fix this part
         print("\\newpage")
         print("\\begin{multicols}{2}")
