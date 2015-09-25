@@ -11,7 +11,7 @@ class AdditionDecimaux(TemplateExercice):
         self.min = -10
         self.max = 10
         self.nb = ["a", "b", "c", "d"]
-        self.sign = ["+", "-", "\\times", "\\div"]
+        self.sign = ["\\times", "\\div"]
         self.generate()
 
     def generate(self):
