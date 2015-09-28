@@ -47,7 +47,9 @@ class AdditionDecimaux(TemplateExercice):
         todo = currentcalc.replace("\\times", "*").replace("\\div", "/").replace("$", "").replace("{","(").replace("}",")")
         calcresult = simplify(todo)
         calcresult = str(calcresult).replace("**", "^").replace("*", "\\times ").replace("/", "\\div ").replace("(", "{").replace(")", "}")
-        return "$%s$" % (calcresult)
+        #        return "$%s$" % (calcresult)
+        return "None"
+
 
 
     def format_with_power_symbol(self, liste, signs, powersymbol):
