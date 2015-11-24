@@ -18,12 +18,13 @@ class Addition(TemplateExercice):
     	a,b = first, second
     	r=1
     	while (r!=0):
-    		string="\\[\\opidiv{%s}{%s}\\]\n"%(a,b)
-    		r=a%b
-    		q=(a-r)/b
-    		string+="\\[%s = %s\\times %s +%s\\]\n"%(a,b,q,r)
-    		string+="\\[PGCD(%s,%s) = PGCD(%s,%s)\\]\n"%(a,b,b,r)
-                a,b = b,r
+            string+=" %s %s\n"%(a,b)
+            string+="\\[\\opidiv{%s}{%s}\\]\n"%(a,b)
+            r=a%b
+            q=(a-r)/b
+            string+="\\[%s = %s\\times %s +%s\\]\n"%(a,b,q,r)
+            string+="\\[PGCD(%s,%s) = PGCD(%s,%s)\\]\n"%(a,b,b,r)
+            a,b = b,r
     	return string
 
     def generate(self):
