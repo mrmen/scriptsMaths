@@ -12,9 +12,9 @@ class ProblemePGCD(TemplateExercice):
         self.min = 100
         self.max = 600
         self.exType=["tartelette salee", "tartelette sucree", "dragee", "pains", "bouquets"]
-        self.tarteletteSalee = ["tranches de chorizo", "tranches de fromage de chèvre", "olives", "tomates", "tranches de bacon"]
-        self.pains = ["tranches de chorizo", "tranches de fromage de chèvre", "olives", "tomates", "tranches de bacon"]
-        self.tarteletteSucree = ["carrés de chocolat", "amandes", "speculos", "fraises", "cerises", "framboises", "raisins"]
+        self.tarteletteSalee = ["tranches de chorizo", "tranches de fromage de chevre", "olives", "tomates", "tranches de bacon"]
+        self.pains = ["tranches de chorizo", "tranches de fromage de chevre", "olives", "tomates", "tranches de bacon"]
+        self.tarteletteSucree = ["carres de chocolat", "amandes", "speculos", "fraises", "cerises", "framboises", "raisins"]
         self.dragee = ["vanille", "fraise", "chocolat", "pistache", "rose", "violette", "menthe", "banane", "citron"]
         self.fleurs = ["lilas", "jasmin", "coquelicot", "tournesol", "tulipes", "roses", "margueritte", "pivoine"]
         self.ingredients = [self.tarteletteSalee, self.tarteletteSucree, self.dragee, self.pains, self.fleurs]
