@@ -11,13 +11,8 @@ class ProblemePGCD(TemplateExercice):
         self.nbQuestion=1
         self.min = 100
         self.max = 600
-<<<<<<< HEAD
-        self.exType=["tartelette salee", "tartelette sucree", "dragee", "pains", "bouquets"]
-        self.tarteletteSalee = ["tranches de chorizo", "tranches de fromage de chevre", "olives", "tomates", "tranches de bacon"]
-=======
         self.exType=["tartelettes salees", "tartelettes sucrees", "sachet de dragees", "petits pains", "bouquets"]
         self.tarteletteSalee = ["tranches de chorizo", "tranches de fromage de chèvre", "olives", "tomates", "tranches de bacon"]
->>>>>>> 27a44591b4fd58ebd7576becc7af3c6c6c18cbbf
         self.pains = ["tranches de chorizo", "tranches de fromage de chevre", "olives", "tomates", "tranches de bacon"]
         self.tarteletteSucree = ["carres de chocolat", "amandes", "speculos", "fraises", "cerises", "framboises", "raisins"]
         self.dragee = ["vanille", "fraise", "chocolat", "pistache", "rose", "violette", "menthe", "banane", "citron"]
