@@ -4,11 +4,11 @@ from TemplateExercice import *
 import random
 
 
-class Division(TemplateExercice):
+class Addition(TemplateExercice):
     def __init__(self):
         TemplateExercice.__init__(self)
         self.min = 10
-        self.max = 5000
+        self.max = 500
         self.generate()
 
     def generate(self):
@@ -18,14 +18,14 @@ class Division(TemplateExercice):
             tempsolution = []
             for question in range(self.nbQuestion):
                 first = random.randint(self.min, self.max)
-                second = random.randint(self.min, 50)
-                first, second = max(first, second), min(first, second)
-                tempenonce.append("$%s \\div %s$" % (first, second))
-                tempsolution.append("\\opidiv[displayintermediary=all]{%s}{%s}" % (first, second))
+                second = random.randint(self.min, self.max)
+                third = random.randint(self.min, self.max)
+                tempenonce.append("%s + %s + %s" % (first, second, third))
+                tempsolution.append("%s + %s + %s = %s" % (first, second, third, first + second + third))
             self.listeEnonce.append(tempenonce)
             self.listeSolution.append(tempsolution)
 
 
 if __name__ == "__main__":
-    app = Division()
+    app = Addition()
     app.display()

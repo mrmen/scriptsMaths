@@ -21,7 +21,7 @@ class Division(TemplateExercice):
                 second = random.randint(self.min, 50)
                 first, second = max(first, second), min(first, second)
                 tempenonce.append("$%s \\div %s$" % (first, second))
-                tempsolution.append("\\opidiv[displayintermediary=all]{%s}{%s}" % (first, second))
+                tempsolution.append("\\opidiv{%s}{%s}" % (first, second))
             self.listeEnonce.append(tempenonce)
             self.listeSolution.append(tempsolution)
 
