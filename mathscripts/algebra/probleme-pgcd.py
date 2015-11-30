@@ -56,7 +56,7 @@ class ProblemePGCD(TemplateExercice):
             tempsolution = []
             for question in range(self.nbQuestion):
                 first = random.randint(self.min, self.max)
-                second = random.randint(self.min, self.max)
+                second = random.randint(12, 60)*first
                 index = random.randint(0,len(self.exType)-1)
                 exType = self.exType[index]
                 templist=list(self.ingredients)
