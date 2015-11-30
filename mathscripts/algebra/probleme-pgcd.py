@@ -16,7 +16,7 @@ class ProblemePGCD(TemplateExercice):
         self.pains = ["tranches de chorizo", "tranches de fromage de chevre", "olives", "tomates", "tranches de bacon"]
         self.tarteletteSucree = ["carres de chocolat", "amandes", "speculos", "fraises", "cerises", "framboises", "raisins"]
         self.dragee = ["vanille", "fraise", "chocolat", "pistache", "rose", "violette", "menthe", "banane", "citron"]
-        self.fleurs = ["lilas", "jasmin", "coquelicot", "tournesol", "tulipes", "roses", "margueritte", "pivoine"]
+        self.fleurs = ["lilas", "coquelicots", "tournesols", "tulipes", "roses", "marguerittes", "pivoines"]
         self.ingredients = [self.tarteletteSalee, self.tarteletteSucree, self.dragee, self.pains, self.fleurs]
         self.generate()
 
@@ -59,8 +59,9 @@ class ProblemePGCD(TemplateExercice):
                 second = random.randint(self.min, self.max)
                 index = random.randint(0,len(self.exType)-1)
                 exType = self.exType[index]
-                ingredient1 = self.ingredients[index][random.randint(0,len(self.ingredients[index])-1)]
-                ingredient2 = self.ingredients[index][random.randint(0,len(self.ingredients[index])-1)]                                     
+                templist=list(self.ingredients)
+                ingredient1 = templist[index].pop(random.randint(0,len(templist[index])-1))
+                ingredient2 = templist[index].pop(random.randint(0,len(templist[index])-1))                                 
                 tempenonce.append("Combien de %s identiques constitues equitablement avec %s %s et %s %s peut-on faire au maximum ?. Quelle sera leur composition ?" % (exType, first, ingredient1, second, ingredient2))
                 tempsolution.append(self.createSolution(exType, first, second, ingredient1, ingredient2))
             self.listeEnonce.append(tempenonce)
