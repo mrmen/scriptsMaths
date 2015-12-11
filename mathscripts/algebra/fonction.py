@@ -27,7 +27,7 @@ class Fonction(TemplateExercice):
         string += "& \\Longleftrightarrow x =  %s"%(x)
         string += "\\end{align*}"
         string += "\\[\\mathcal{S} = \\left\\{"+str(x)+"\\right\\}\\]"
-        string += "Donc %s a un antecedent par f : %s"%(image,x)
+        string += "Donc %s a un ant\\'ec\\'edent par f : %s"%(image,x)
         return string
         
         
