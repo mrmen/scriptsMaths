@@ -46,7 +46,7 @@ class Fonction(TemplateExercice):
                 image = a * x + b
                 if b>=0:
                     b = "+"+str(b)
-                tempenonce.append("Antecedent de $%s$ par $f : x \\mapsto %s x %s$"%(image, a, b))
+                tempenonce.append("Ant\\'ec\\'edent de $%s$ par $f : x \\mapsto %s x %s$"%(image, a, b))
                 tempsolution.append(self.create_solution(a,str(b),x, image))
             self.listeEnonce.append(tempenonce)
             self.listeSolution.append(tempsolution)
