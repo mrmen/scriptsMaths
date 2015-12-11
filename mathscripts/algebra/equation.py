@@ -45,7 +45,7 @@ class Equation(TemplateExercice):
                 image = a * x + b
                 if b>=0:
                     b = "+"+str(b)
-                tempenonce.append("R\\'esoudre $%s \\times x %b = %b$"%(a, b, image))
+                tempenonce.append("R\\'esoudre $%s \\times x %s = %b$"%(a, b, image))
                 tempsolution.append(self.create_solution(a,str(b),x, image))
             self.listeEnonce.append(tempenonce)
             self.listeSolution.append(tempsolution)
