@@ -5,13 +5,13 @@ import random
 from sympy import abc, simplify
 
 
-class AdditionDecimaux(TemplateExercice):
+class Developpement(TemplateExercice):
     def __init__(self):
         TemplateExercice.__init__(self)
         self.min = -10
         self.max = 10
-        self.nb = ["a", "b", "c", "d"]
-        self.sign = ["\\times", "\\div"]
+        self.nb = ["x", "y", ""]
+        self.sign = ["\\times"]
         self.generate()
 
     def generate(self):
@@ -21,34 +21,31 @@ class AdditionDecimaux(TemplateExercice):
             tempsolution = []
             for question in range(self.nbQuestion):
                 # create list with [value, exp]
-                nbnumbers = 5
+                nbnumbers = 4
                 values = []
                 for _ in range(nbnumbers):
-                    exponent = random.randint(self.min, self.max)
-                    value = self.nb[random.randint(0,len(self.nb)-1)]
-                    values.append([value, exponent])
-                signs = []
-                for _ in range(nbnumbers-1):
-                    signs.append(self.sign[random.randint(0,len(self.sign)-1)])
+                    value = random.randint(self.min, self.max)
+                    values.append([value, self.nb[random.randint(0,len(self.nb)-1)])
                 #
-                tempenonce.append(self.format_enonce(values, signs))
-                tempsolution.append(self.format_solution(values, signs))
+                tempenonce.append(self.format_enonce(values))
+                tempsolution.append(self.format_solution(values))
             self.listeEnonce.append(tempenonce)
             self.listeSolution.append(tempsolution)
 
 
-    def format_enonce(self, liste, signs):
-        powersymbol = "^"
+    def format_enonce(self, liste):
+        for elt in liste:
+            
         return self.format_with_power_symbol(liste, signs, powersymbol)
 
     def format_solution(self, liste, signs):
         powersymbol = "**"
         currentcalc = self.format_with_power_symbol(liste, signs, powersymbol)
         todo = currentcalc.replace("\\times", "*").replace("\\div", "/").replace("$", "").replace("{","(").replace("}",")")
-        calcresult = simplify(todo)
-        calcresult = str(calcresult).replace("**", "^").replace("*", "\\times ").replace("/", "\\div ").replace("(", "{").replace(")", "}")
-        #        return "$%s$" % (calcresult)
-        return "None"
+        calcresult = simplify(todo).replace("**","^").replace("*","\\times").replace("^","**")
+        #calcresult = str(calcresult).replace("**", "^").replace("*", "\\times ").replace("/", "\\div ").replace("(", "{").replace(")", "}")
+        return "$%s$" % (calcresult)
+        #return "None"
 
 
 
