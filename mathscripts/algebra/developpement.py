@@ -63,14 +63,15 @@ class Developpement(TemplateExercice):
             string += elt+" "
             count +=1
             if count == 2:
-                string+="\\bigg)\\times \\bigg("
+                string+="\\bigg)\\times\\bigg("
         string+="\\bigg)"
         return "$" + string + "$"
 
     def format_solution(self, liste):
         calc_initial = self.format_enonce(liste).replace("$", "")
-        calc = calc_initial.replace("\\times", "*")
-        return "$"+str(calc_initial)+" = "+str(expand(calc)).replace("*","\\times")+"$"
+        calc = calc_initial.replace("\\times", "*").replace("\\bigg","")
+        calc_out = str(expand(calc))
+        return "$"+str(calc_initial)+" = "+calc_out+"$"
 
 
 if __name__ == "__main__":
