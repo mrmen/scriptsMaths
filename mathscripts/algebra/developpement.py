@@ -36,7 +36,7 @@ class Developpement(TemplateExercice):
                         values.append([value, self.nb[random.randint(0,len(self.nb)-1)], self.additive[random.randint(0,1)]])
                     else:
                         values.append([value, self.nb[random.randint(0,len(self.nb)-1)]])
-                tempenonce.append(self.format_enonce(values))
+                tempenonce.append(self.format_enonce(values).replace("\\times", ""))
                 tempsolution.append(self.format_solution(values))
             self.listeEnonce.append(tempenonce)
             self.listeSolution.append(tempsolution)
@@ -65,13 +65,13 @@ class Developpement(TemplateExercice):
             if count == 2:
                 string+="\\bigg)\\times\\bigg("
         string+="\\bigg)"
-        return "$" + string.replace("\\times","") + "$"
+        return "$" + string + "$"
 
     def format_solution(self, liste):
         calc_initial = self.format_enonce(liste).replace("$", "")
         calc = calc_initial.replace("\\times", "*").replace("\\bigg","")
-        calc_out = str(expand(calc)).replace("*"," \\times ")
-        return "$"+str(calc_initial)+" = "+calc_out+"$"
+        calc_out = str(expand(calc)).replace("*","")
+        return "$"+str(calc_initial).replace("\\times", "")+" = "+calc_out+"$"
 
 
 if __name__ == "__main__":
