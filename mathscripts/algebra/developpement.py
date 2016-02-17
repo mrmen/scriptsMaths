@@ -65,7 +65,7 @@ class Developpement(TemplateExercice):
             if count == 2:
                 string+="\\bigg)\\times\\bigg("
         string+="\\bigg)"
-        return "$" + string + "$"
+        return "$" + string.replace("\\times","") + "$"
 
     def format_solution(self, liste):
         calc_initial = self.format_enonce(liste).replace("$", "")
