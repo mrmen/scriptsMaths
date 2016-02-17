@@ -58,19 +58,19 @@ class Developpement(TemplateExercice):
 
     def concat_enonce(self, liste):
         count = 0
-        string = "("
+        string = "\\bigg("
         for elt in liste:
             string += elt+" "
             count +=1
             if count == 2:
-                string+=")\\times ("
-        string+=")"
+                string+="\\bigg)\\times \\bigg("
+        string+="\\bigg)"
         return "$" + string + "$"
 
     def format_solution(self, liste):
         calc_initial = self.format_enonce(liste).replace("$", "")
         calc = calc_initial.replace("\\times", "*")
-        return "$"+str(calc_initial)+" = "+str(expand(calc))+"$"
+        return "$"+str(calc_initial)+" = "+str(expand(calc)).replace("*","\\times")+"$"
 
 
 if __name__ == "__main__":
