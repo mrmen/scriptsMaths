@@ -17,11 +17,12 @@ class Mult10(TemplateExercice):
             tempenonce = []
             tempsolution = []
             for question in range(self.nbQuestion):
-                first = random.randint(self.min, self.max)
-                second = float(random.randint(self.min, self.max))/10**first
+                first = random.randint(1,5)
+                secondprime = random.randint(self.min, self.max)
+                second = float(secondprime)/10**first
                 third = random.randint(1,4)
                 tempenonce.append("%s \\times %s" % (second, 10**third))
-                tempsolution.append("%s \\times %s = %s" % (second, 10**third, second, 10**third))
+                tempsolution.append("%s \\times %s = %s" % (second, 10**third, secondprime / (10**first / 10**third)))
             self.listeEnonce.append(tempenonce)
             self.listeSolution.append(tempsolution)
 
