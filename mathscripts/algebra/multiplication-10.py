@@ -22,7 +22,7 @@ class Mult10(TemplateExercice):
                 second = float(secondprime)/10**first
                 third = random.randint(1,4)
                 tempenonce.append("$%s \\times %s$" % (second, 10**third))
-                tempsolution.append("$%s \\times %s = %s$" % (second, 10**third, secondprime / (10**first / 10**third)))
+                tempsolution.append("$%s \\times %s = %s$" % (second, 10**third, secondprime * /10**first * 10**third))
             self.listeEnonce.append(tempenonce)
             self.listeSolution.append(tempsolution)
 
