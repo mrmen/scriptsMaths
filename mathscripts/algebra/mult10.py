@@ -27,5 +27,5 @@ class Mult10(TemplateExercice):
 
 
 if __name__ == "__main__":
-    app = Addition()
+    app = Mult10()
     app.display()
