@@ -8,6 +8,7 @@ class TemplateExercice:
         self.listeSolution = []
         self.nbExercice = 5
         self.nbQuestion = 10
+        self.COLONNE=1
         self.package = ["amsmath", "amssymb", "inputenc", "fontenc", "geometry", "xlop", "multicol"]
 
     @staticmethod
@@ -56,10 +57,12 @@ class TemplateExercice:
     def display(self):
         """display the whole exercise according to previous functions"""
         self.print_preamble()
-        print("\\begin{multicols}{2}")
+        if self.COLONNE!=0:
+            print("\\begin{multicols}{2}")
         # TODO
         self.print_enonce()
-        print("\\end{multicols}")
+        if self.COLONNE!=0:
+            print("\\end{multicols}")
         # TODO fix this part
         print("\\newpage")
         print("\\begin{multicols}{2}")
