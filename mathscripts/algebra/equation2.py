@@ -63,7 +63,7 @@ class Developpement(TemplateExercice):
 
     def format_enonce(self, lmember, rmember):
         string = self.concat_elements(lmember, rmember)
-        return "$"+string+"$".replace("*", "\\times")
+        return "$"+string.replace("*"," \\times ")+"$"
 
     def format_solution(self, lmember, rmember):
         string = self.concat_elements(lmember, rmember)
