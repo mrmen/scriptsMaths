@@ -51,13 +51,13 @@ class Developpement(TemplateExercice):
         for element in lmember:
             string = ""
             string = "".join(element[0])
-            if element[1] != 1:
+            if element[1][0] != "1":
                 string = "\\dfrac{"+string+"}{"+element[1][0]+"}"
             stringleft.append(string)
         for element in rmember:
             string = ""
             string = " ".join(element[0])
-            if element[1] != 1:
+            if element[1][0] != "1":
                 string = "\\dfrac{"+string+"}{"+element[1][0]+"}"
             stringright.append(string)
         return "+".join(stringleft)+"="+"+".join(stringright)
