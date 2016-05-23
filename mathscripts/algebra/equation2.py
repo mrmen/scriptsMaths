@@ -11,6 +11,7 @@ class Developpement(TemplateExercice):
         self.min = -10
         self.max = 10
         self.generate()
+        self.COLONNE=0
 
     def random_except_zero(self):
         x = 0
