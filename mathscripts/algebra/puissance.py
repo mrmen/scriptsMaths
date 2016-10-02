@@ -3,7 +3,7 @@ __author__ = 'mrmen'
 from TemplateExercice import *
 import random
 from sympy import abc, simplify
-
+import re
 
 class AdditionDecimaux(TemplateExercice):
     def __init__(self):
@@ -45,8 +45,12 @@ class AdditionDecimaux(TemplateExercice):
         powersymbol = "**"
         currentcalc = self.format_with_power_symbol(liste, signs, powersymbol)
         todo = currentcalc.replace("\\times", "*").replace("\\div", "/").replace("$", "").replace("{","(").replace("}",")")
-        calcresult = str(simplify(todo)).replace("**","^").replace("*","\\times").replace("^","**")
-        #calcresult = str(calcresult).replace("**", "^").replace("*", "\\times ").replace("/", "\\div ").replace("(", "{").replace(")", "}")
+        calcresult = str(simplify(todo)).replace("**","^").replace("*","\\times ").replace("^","**")
+        cal = calcresult
+        search = re.compile("\*\*(\-?[0-9]+)")
+        calcresult = search.sub(r'^{\1}',calcresult)
+        search2 = re.compile("([^/]+)/\((.*)\)")
+        calcresult = search2.sub(r'\\dfrac{\1}{\2}',calcresult)
         return "$%s$" % (calcresult)
         #return "None"
 
