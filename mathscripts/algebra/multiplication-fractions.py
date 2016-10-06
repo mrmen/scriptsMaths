@@ -11,6 +11,11 @@ class MultiplicationFraction(TemplateExercice):
         self.DENOMINATEUR = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
         self.generate()
 
+    def gcd(self,a,b):
+        while a%b != 0 : 
+            a, b = b, a%b 
+        return b        
+        
     def generate(self):
         """generate enonce and solution according to self.nbQuestion and self.nbExercice from parent class"""
         for exercice in range(self.nbExercice):
@@ -54,7 +59,7 @@ class MultiplicationFraction(TemplateExercice):
         stringOutput += "\\dfrac{%s \\times %s}{%s \\times %s}"%(list[0][0], list[1][0], list[0][1], list[1][1])
         stringOutput += "\n& = "
         num,denom = list[0][0] * list[1][0], list[0][1] * list[1][1]
-        commun = math.gcd(num, denom)
+        commun = gcd(num, denom)
         num,denom = int(num/commun), int(denom/commun)
         stringOutput += "\\dfrac{%s \\times %s}{%s\\times %s}"%(num,commun,denom,commun)
         stringOutput += "\n& = "
