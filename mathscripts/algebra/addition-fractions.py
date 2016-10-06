@@ -47,7 +47,7 @@ class AdditionDecimaux(TemplateExercice):
         return frac
 
     def format_list(self, list):
-        return "%s + %s" % (list[0], list[1])
+        return "$%s + %s$" % (list[0], list[1])
 
     def get_solution(self, list):
         numerateur = list[0]
