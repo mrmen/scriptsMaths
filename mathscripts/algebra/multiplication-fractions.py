@@ -56,9 +56,9 @@ class MultiplicationFraction(TemplateExercice):
         stringOutput += frac[0] + "\\times" + frac[1]
 
         stringOutput += "\n& = "
-        stringOutput += "\\dfrac{%s \\times %s}{%s \\times %s}"%(list[0][0], list[1][0], list[0][1], list[1][1])
+        stringOutput += "\\dfrac{%s \\times %s}{%s \\times %s}"%(numerateur[0], numerateur[1], denominateur[0], denominateur[1])
         stringOutput += "\n& = "
-        num,denom = list[0][0] * list[1][0], list[0][1] * list[1][1]
+        num,denom = numerateur[0]*numerateur[1], denominateur[0]*denominateur[1]
         stringOutput += "\\dfrac{%s}{%s}\n& = "%(num,denom)
         commun = self.gcd(num, denom)
         num,denom = int(num/commun), int(denom/commun)
