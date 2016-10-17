@@ -23,7 +23,7 @@ class MultiplicationDecimaux(TemplateExercice):
                 second = random.randint(self.min, self.max)
                 exp2 = random.randint(-2,-1)
 
-                tempenonce.append("%s \\times %s " % (first*10**exp1, second*10**exp2))
+                tempenonce.append("$%s \\times %s$" % (first*10**exp1, second*10**exp2))
                 tempsolution.append("\\opmul{%s}{%s}" % (first*10**exp1, second*10**exp2))
             self.listeEnonce.append(tempenonce)
             self.listeSolution.append(tempsolution)
