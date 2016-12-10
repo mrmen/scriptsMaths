@@ -19,9 +19,8 @@ class Addition(TemplateExercice):
             for question in range(self.nbQuestion):
                 first = random.randint(self.min, self.max)
                 second = random.randint(self.min, self.max)
-                third = random.randint(self.min, self.max)
-                tempenonce.append("%s + %s + %s" % (first, second, third))
-                tempsolution.append("%s + %s + %s = %s" % (first, second, third, first + second + third))
+                tempenonce.append("%s + %s " % (first, second))
+                tempsolution.append("\opadd{%s}{%s}"%(first,second))
             self.listeEnonce.append(tempenonce)
             self.listeSolution.append(tempsolution)
 
