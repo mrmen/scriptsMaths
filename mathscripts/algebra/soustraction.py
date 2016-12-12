@@ -21,7 +21,7 @@ class Soustraction(TemplateExercice):
                 second = random.randint(self.min, self.max)
                 first, second = max(first, second), min(first, second)
                 tempenonce.append("%s - %s" % (first, second))
-                tempsolution.append("%s - %s = %s" % (first, second, first - second))
+                tempsolution.append("\opsub{%s}{%s}"%(first,second))
             self.listeEnonce.append(tempenonce)
             self.listeSolution.append(tempsolution)
 

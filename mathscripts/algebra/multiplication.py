@@ -21,7 +21,7 @@ class Multiplication(TemplateExercice):
                 second = random.randint(self.min, self.max)
                 first, second = max(first, second), min(first, second)
                 tempenonce.append("%s \\times %s" % (first, second))
-                tempsolution.append("%s \\times %s = %s" % (first, second, first * second))
+                tempsolution.append("\opmul{%s}{%s}" % (first, second))
             self.listeEnonce.append(tempenonce)
             self.listeSolution.append(tempsolution)
 
