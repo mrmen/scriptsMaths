@@ -1,6 +1,6 @@
 # /usr/bin/python
 # -*- coding:utf8 -*-
-
+import sys
 
 def print_exercice(ex_type):
     if ex_type == "addition":
@@ -31,7 +31,32 @@ def print_exercice(ex_type):
         \centering
         %s
         \end{frame}'''%(question)
-    elif ex_type == "fractions":
+    elif ex_type == "fractionssimp":
+        a = random.randint(2,9)
+        b = random.randint(2,9)*a
+        return '''
+        \\begin{frame}{Fractions}
+        Simplifie
+        \centering
+        \[\dfrac{%s}{%s}\]
+        \end{frame}'''%(a,b)
+    elif ex_type == "fractionscomp":
+        a = [random.randint(2,9) for _ in range(4)]
+        return '''
+        \\begin{frame}{Fractions}
+        Compare
+        \centering
+        \[\dfrac{%s}{%s}\ et\ \dfrac{%s}{%s}\]
+        \end{frame}'''%(a[0],a[1],a[2],a[3])
+    elif ex_type == "fractionsadd":
+        a = [random.randint(2,9) for _ in range(4)]
+        sign =['+', '-'][random.randint(0,1)]
+        return '''
+        \\begin{frame}{Fractions}
+        \centering
+        \[\dfrac{%s}{%s} %s \dfrac{%s}{%s}\]
+        \end{frame}'''%(a[0],a[1],sign,a[2],a[3])
+    elif ex_type == "fractionsall":
         a = [random.randint(2,9) for _ in range(4)]
         sign =['\\times ', '+', '-', '\\div '][random.randint(0,3)]
         return '''
@@ -46,6 +71,7 @@ def print_exercice(ex_type):
         return '''
         \\begin{frame}{Proportionnalité}
         \centering
+        \\textbf{Complète ce tableau de proportionnalité.}
         \\begin{tabular}{|c|c|}
         \hline
         %s & %s\\\\
@@ -53,7 +79,6 @@ def print_exercice(ex_type):
         %s & ?\\\\
         \hline
         \end{tabular}
-        \\textbf{Compléte ce tableau de proportionnalité.}
         \end{frame}'''%(a,a*facteur,b)
     elif ex_type == "relatifs":
         a = 0
@@ -64,8 +89,8 @@ def print_exercice(ex_type):
         return '''
         \\begin{frame}{Relatifs}
         \centering
+        \\textbf{Quel est le résultat de ce calcul ?}
         \[ %s %s %s\]
-        \\textbf{Quel est le résultat du calcul précédent ?}
         \end{frame}'''%(a,sgn,b)
     elif ex_type == "fonction":
         a = random.randint(-10,10)
@@ -95,7 +120,7 @@ def print_exercice(ex_type):
 
         \\tkzMarkSegments[mark=||](A,B C,D)
         \\tkzMarkSegments[mark=%s](A,D B,C)
-
+        \\tkzMarkRightAngle(A,B,C)
         \\tkzLabelSegment[left](A,B){%s}
 
         \\tkzLabelSegment[above](B,C){%s}
@@ -123,6 +148,7 @@ def print_exercice(ex_type):
 
         \\tkzMarkSegments[mark=||](A,B C,D)
         \\tkzMarkSegments[mark=%s](A,D B,C)
+        \\tkzMarkRightAngle(A,B,C)
 
         \\tkzLabelSegment[left](A,B){%s}
 
@@ -158,7 +184,7 @@ def print_exercice(ex_type):
         \end{tikzpicture}
         
         \\textbf{Quelle est la mesure du côté manquant ?}
-        \end{frame}'''%(L[0],L[1],L[2])
+        \end{frame}'''%(L[0],min(L[1],L[2]),max(L[1],L[2]))
     elif ex_type == "pythagore-reciproque":
         L = []
         u = random.randint(1, 10)
@@ -175,9 +201,7 @@ def print_exercice(ex_type):
         \\tkzDefPoint(3,4){C}
         \\tkzDrawPolygon(A,B,C)
         \\tkzLabelPoints(A,B,C)
-        
-        \\tkzMarkRightAngle(A,B,C)
-        
+                
         \\tkzLabelSegment[below](A,B){%s}
         \\tkzLabelSegment[right](B,C){%s}
         \\tkzLabelSegment[left](C,A){%s}
@@ -189,8 +213,9 @@ def print_exercice(ex_type):
 
         
         
-import os, sys, clipboard, webbrowser
-import random
+import os, sys, random
+if sys.platform == "ios":
+    import clipboard, webbrowser
         
 if len(sys.argv)<2:
     print("Erreur il manque un argument.")
@@ -210,6 +235,9 @@ for ex_type in liste_exercice:
     string+=print_exercice(ex_type)
                 
 string+='''\end{document}'''
-clipboard.set(string)
 
-webbrowser.open('texwriter://')
+if sys.platform == "ios":
+    clipboard.set(string)
+    webbrowser.open('texwriter://')
+else:
+    print(string)

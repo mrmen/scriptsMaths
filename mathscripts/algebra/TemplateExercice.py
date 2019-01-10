@@ -6,7 +6,7 @@ class TemplateExercice:
         """create all needed parts"""
         self.listeEnonce = []
         self.listeSolution = []
-        self.nbExercice = 5
+        self.nbExercice = 1
         self.nbQuestion = 10
         self.COLONNE=1
         self.package = ["amsmath", "amssymb", "inputenc", "fontenc", "geometry", "xlop", "multicol", "xcolor"]

@@ -9,7 +9,7 @@ class TemplateExercice:
         self.nbExercice = 5
         self.nbQuestion = 10
         self.COLONNE=1
-        self.package = ["amsmath", "amssymb", "inputenc", "fontenc", "geometry", "xlop", "multicol"]
+        self.package = ["amsmath", "amssymb", "inputenc", "fontenc", "geometry", "xlop", "multicol", "babel", "qrcode"]
 
     @staticmethod
     def format_exercice(exercice, exercise_type):

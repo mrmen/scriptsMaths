@@ -42,7 +42,7 @@ for j in range(base-1):
 
 
 sum = hashlib.md5()
-sum.update(str(pyramide))
+#sum.update(str(pyramide))
 
 
 l = 1.5
