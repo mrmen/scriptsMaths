@@ -1,23 +1,15 @@
 __author__ = 'mrmen'
-
 from TemplateExercice import *
 import random
-from sympy import solve
 
 
-class Developpement(TemplateExercice):
+class AdditionDecimaux(TemplateExercice):
     def __init__(self):
         TemplateExercice.__init__(self)
-        self.min = -10
-        self.max = 10
+        self.FACTEUR = [2,3,4,5,6,7,8,9,10,11,12,13]
+        self.NUMERATEUR = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+        self.DENOMINATEUR = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
         self.generate()
-        self.COLONNE=0
-
-    def random_except_zero(self):
-        x = 0
-        while (x==0):
-            x = random.randint(self.min, self.max)
-        return x
 
     def generate(self):
         """generate enonce and solution according to self.nbQuestion and self.nbExercice from parent class"""
@@ -25,59 +17,63 @@ class Developpement(TemplateExercice):
             tempenonce = []
             tempsolution = []
             for question in range(self.nbQuestion):
-                lmember, rmember = [], []
-                for liste in lmember, rmember:
-                    temp = []
-                    for _ in range(2):
-                        a = self.random_except_zero()
-                        if a<0:
-                            a="("+str(a)+")"
-                        b = self.random_except_zero()
-                        if b<0:
-                            b="("+str(b)+")"
-                        if random.randint(0,1):
-                            denom = random.randint(1,9)
-                        else:
-                            denom = 1
-                        temp = [[str(a),"*", "x", "+",str(b)],[str(denom)]]
-                        liste.append(temp)
-                tempenonce.append(self.format_enonce(lmember,rmember))
-                tempsolution.append(self.format_solution(lmember,rmember))
+                raw = self.generate_exercise()
+                tempenonce.append(self.format_list(self.parse_exercise_raw(raw)))
+                tempsolution.append(self.get_solution(raw))
             self.listeEnonce.append(tempenonce)
             self.listeSolution.append(tempsolution)
 
-    def concat_elements(self, lmember, rmember):
-        stringleft , stringright = [], []
-        for element in lmember:
-            string = ""
-            string = "".join(element[0])
-            if element[1][0] != "1":
-                string = "\\dfrac{"+string+"}{"+element[1][0]+"}"
-            stringleft.append(string)
-        for element in rmember:
-            string = ""
-            string = " ".join(element[0])
-            if element[1][0] != "1":
-                string = "\\dfrac{"+string+"}{"+element[1][0]+"}"
-            stringright.append(string)
-        return "+".join(stringleft)+"="+"+".join(stringright)
+    def generate_exercise(self):
+        """Generate a list of value in order to create rationals"""
+        numerateur = []
+        numerateur.append(self.NUMERATEUR[random.randint(0,len(self.NUMERATEUR)-1)])
+        numerateur.append(self.NUMERATEUR[random.randint(0,len(self.NUMERATEUR)-1)])
 
-    def format_enonce(self, lmember, rmember):
-        string = self.concat_elements(lmember, rmember)
-        return "$"+string.replace("*"," \\times ")+"$"
+        denominateur = []
+        denominateur.append(self.DENOMINATEUR[random.randint(0,len(self.DENOMINATEUR)-1)])
 
-    def format_solution(self, lmember, rmember):
-        string = self.concat_elements(lmember, rmember)
-        string = string.replace("=","-(")
-        string = string + ")"
-        calc = string.replace("\\dfrac{","(").replace("}{",")/(").replace("}",")")
-        calc_out = str(solve(calc,"x"))
-        solution = calc_out[1:-1]
-        if "/" in solution:
-            solution = "\\dfrac{"+solution.replace("/","}{")+"}"
-        return "$"+solution+"$"
+        facteur = self.FACTEUR[random.randint(0,len(self.FACTEUR)-1)]
+        denominateur.append(denominateur[0]*facteur)
+        return [numerateur,denominateur]
 
+    def parse_exercise_raw(self, list):
+        """Parse output of generate_exercise and give a LaTeX output"""
+        numerateur = list[0]
+        denominateur = list[1]
+        #
+        frac = []
+        frac.append("\\dfrac{"+str(numerateur[0])+"}"+"{"+str(denominateur[0])+"}")
+        frac.append("\\dfrac{"+str(numerateur[1])+"}"+"{"+str(denominateur[1])+"}")
+        return frac
 
+    def format_list(self, list):
+        return "$%s + %s$" % (list[0], list[1])
+
+    def get_solution(self, list):
+        numerateur = list[0]
+
+        denominateur = list[1]
+        facteur = int(list[1][1] / list[1][0])
+        stringOutput = ""
+        stringOutput = stringOutput + "\\begin{align*}"
+        frac = self.parse_exercise_raw(list)
+
+        stringOutput += frac[0] + "+" + frac[1]
+
+        stringOutput += "\n& = "
+        fracTimes = frac[0].replace("}", "{\color{red}\\times " + str(facteur) + "}}")
+        stringOutput += fracTimes + "+" + frac[1]
+        stringOutput += "\\\\\n & = "
+
+        fracTimes = "\\dfrac{" + str(numerateur[0] * facteur) + "}{{\color{red}" + str(denominateur[1]) + "}}"
+        stringOutput += fracTimes + "+" + "\\dfrac{" + str(numerateur[1]) + "}" + "{\color{red}" + str(denominateur[1]) + "}"
+        stringOutput += "\\\\\n & = "
+
+        result = "\\dfrac{" + str(numerateur[0] * facteur + numerateur[1]) + "}{" + str(denominateur[1]) + "}"
+        stringOutput += result + "\n"
+        stringOutput += "\\end{align*}"
+
+        return stringOutput
 if __name__ == "__main__":
-    app = Developpement()
+    app = AdditionDecimaux()
     app.display()
