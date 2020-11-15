@@ -33,8 +33,8 @@ for j in range(base-1):
         pyramide[j+1].append(levelDown[case]+levelDown[case+1])
 
 
-sum = hashlib.md5()
-sum.update(str(pyramide))
+#sum = hashlib.md5()
+#sum.update(str(pyramide))
 
 
 l = 1.5
@@ -45,7 +45,7 @@ print("\\begin{document}")
 
 
 print("\\begin{center}\\underline{\\textbf{Exercice}}")
-print("sum : "+sum.hexdigest())
+#print("sum : "+sum.hexdigest())
 print("\\end{center}")
 
 print("\\bigskip")
@@ -73,7 +73,7 @@ print("\\newpage")
 
 
 print("\\begin{center}\\underline{\\textbf{Solution}}")
-print("sum : "+sum.hexdigest())
+#print("sum : "+str(sum.hexdigest()))
 print("\\end{center}")
 
 print("\\bigskip")
