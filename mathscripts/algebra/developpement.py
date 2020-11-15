@@ -70,7 +70,7 @@ class Developpement(TemplateExercice):
     def format_solution(self, liste):
         calc_initial = self.format_enonce(liste).replace("$", "")
         calc = calc_initial.replace("\\times", "*").replace("\\bigg","")
-        calc_out = str(expand(calc)).replace("*","")
+        calc_out = str(expand(calc)).replace("**","^").replace('*','')
         return "$"+str(calc_initial).replace("\\times", "")+" = "+calc_out+"$"
 
 
