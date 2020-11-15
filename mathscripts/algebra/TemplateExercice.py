@@ -1,16 +1,20 @@
 __author__ = 'mrmen'
 
-# pour l'ipad
-import clipboard
+import sys
 
-clip = ""
-clipboard.set(clip)
-
-def mrmen_print(string):
-	global clip
-	print(string)
-	clip = clip + "\n" + string
+if sys.platform == "ios":
+	# pour l'ipad
+	import clipboard
+	clip = ""
 	clipboard.set(clip)
+	def mrmen_print(string):
+		global clip
+		print(string)
+		clip = clip + "\n" + string
+		clipboard.set(clip)
+else:
+	def mrmen_print(string):
+		print(string)
 
 
 class TemplateExercice:
