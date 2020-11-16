@@ -3,6 +3,10 @@ __author__ = 'mrmen'
 
 from TemplateExercice import *
 import random
+from decimal import *
+getcontext().prec = 2
+
+
 
 
 class MultiplicationDecimaux(TemplateExercice):
@@ -19,12 +23,11 @@ class MultiplicationDecimaux(TemplateExercice):
             tempsolution = []
             for question in range(self.nbQuestion):
                 first = random.randint(self.min, self.max)
-                exp1 = random.randint(-3,-1)
                 second = random.randint(self.min, self.max)
-                exp2 = random.randint(-2,-1)
+                exp2 = random.randint(-3,-1)
 
-                tempenonce.append("$%s \\times %s$" % (first*10**exp1, second*10**exp2))
-                tempsolution.append("\\opmul{%s}{%s}" % (first*10**exp1, second*10**exp2))
+                tempenonce.append("$%s \\times %s$" % (first, Decimal(second)*Decimal(10**exp2)))
+                tempsolution.append("$\\fbox{\\opmul[displayintermediary=nonzero]{%s}{%s}}$" % (first, Decimal(second)*Decimal(10**exp2)))
             self.listeEnonce.append(tempenonce)
             self.listeSolution.append(tempsolution)
 

@@ -2,6 +2,8 @@ __author__ = 'mrmen'
 
 from TemplateExercice import *
 import random
+from decimal import *
+getcontext().prec = 2
 
 
 class SoustractionDecimaux(TemplateExercice):
@@ -22,8 +24,8 @@ class SoustractionDecimaux(TemplateExercice):
                 second = random.randint(self.min, self.max)
                 exp2 = random.randint(-2,-1)
 
-                tempenonce.append("%s - %s " % (first*10**exp1, second*10**exp2))
-                tempsolution.append("\\opsub{%s}{%s}" % (first*10**exp1, second*10**exp2))
+                tempenonce.append("$%s - %s $" % (Decimal(first)*Decimal(10**exp1), Decimal(second)*Decimal(10**exp2)))
+                tempsolution.append("$\\opsub[carrysub, lastcarry]{%s}{%s}$" % (Decimal(first)*Decimal(10**exp1), Decimal(second)*Decimal(10**exp2)))
             self.listeEnonce.append(tempenonce)
             self.listeSolution.append(tempsolution)
 
