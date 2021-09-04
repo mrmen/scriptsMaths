@@ -9,6 +9,7 @@ class Pythagore(TemplateExercice):
         TemplateExercice.__init__(self)
         self.min = 10
         self.max = 100
+        self.nbQuestion=25
         self.value_added = [0, 1]
         self.alphabet = [chr(i) for i in range(ord('A'), ord('Z') + 1)]
         self.generate()

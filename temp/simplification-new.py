@@ -2,6 +2,11 @@ import random
 
 L=[]
 VAR=['','x','y','z']
+variable = VAR
+coeff = [_ for _ in range(1,7)]
+EXER = 5
+QUESTION = 10
+MONOME = 4
 
 
 def pprint(L,VAR):
