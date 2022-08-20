@@ -1,6 +1,7 @@
 __author__ = 'mrmen'
 
 import random
+import decimal
 
 from TemplateExercice import *
 
@@ -9,7 +10,7 @@ class Pythagore(TemplateExercice):
         TemplateExercice.__init__(self)
         self.min = 10
         self.max = 100
-        self.nbQuestion=25
+        self.nbQuestion=5
         self.value_added = [0, 1]
         self.alphabet = [chr(i) for i in range(ord('A'), ord('Z') + 1)]
         self.generate()
@@ -62,8 +63,8 @@ class Pythagore(TemplateExercice):
     def generate_exercise_raw(self):
         u, v = 0.0, 0.0
         while (u==0.0) or (v==0.0) or (u==v):
-            u = random.randint(1, 10) / 5.0
-            v = random.randint(1, 10) / 5.0
+            u = float(decimal.Decimal(random.randint(1, 10)) // decimal.Decimal(5))
+            v = float(decimal.Decimal(random.randint(1, 10)) // decimal.Decimal(5))
             v, u = min(u, v), max(u, v)
         if random.randint(0,1):
             return [u ** 2 - v ** 2, 2 * u * v, u ** 2 + v ** 2]
