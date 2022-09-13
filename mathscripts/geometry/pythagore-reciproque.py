@@ -63,8 +63,8 @@ class Pythagore(TemplateExercice):
     def generate_exercise_raw(self):
         u, v = 0.0, 0.0
         while (u==0.0) or (v==0.0) or (u==v):
-            u = float(decimal.Decimal(random.randint(1, 10)) // decimal.Decimal(5))
-            v = float(decimal.Decimal(random.randint(1, 10)) // decimal.Decimal(5))
+            u = float(decimal.Decimal(random.randint(1, 17)) // decimal.Decimal(4))
+            v = float(decimal.Decimal(random.randint(1, 17)) // decimal.Decimal(4))
             v, u = min(u, v), max(u, v)
         if random.randint(0,1):
             return [u ** 2 - v ** 2, 2 * u * v, u ** 2 + v ** 2]
