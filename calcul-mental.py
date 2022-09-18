@@ -1,11 +1,13 @@
 # /usr/bin/python
 # -*- coding:utf8 -*-
-import sys
+import sys, random
 
 def print_exercice(ex_type):
+    global answers
     if ex_type == "addition":
         a = random.randint(10,50)
         b = random.randint(10,50)
+        answers+=[[str(a)+"+"+str(b),"=",a+b]]
         question = ['Quelles est la somme de %s et %s ?', 'Ajouter %s à %s.', '%s +%s'][random.randint(0,2)]%(a,b)
         return '''
         \\begin{frame}{Addition}
@@ -16,6 +18,7 @@ def print_exercice(ex_type):
         a = random.randint(10,50)
         b = random.randint(10,50)
         a,b = max(a,b), min(a,b)
+        answers+=[[str(a)+"-"+str(b),"=",a-b]]
         question = ['Quelles est la difference de %s et %s ?', 'A %s, retranche %s.', '%s - %s'][random.randint(0,2)]%(a,b)
         return '''
         \\begin{frame}{Soustraction}
@@ -25,6 +28,7 @@ def print_exercice(ex_type):
     elif ex_type == "multiplication":
         a = random.randint(2,9)
         b = random.randint(2,9)
+        answers+=[[str(a)+"\\times"+str(b),"=",a*b]]
         question = ['Quelles est le produit de %s et %s ?', 'Multiplie %s par %s.', '%s $\\times$ %s'][random.randint(0,2)]%(a,b)
         return '''
         \\begin{frame}{Multiplication}
@@ -34,6 +38,7 @@ def print_exercice(ex_type):
     elif ex_type == "fractionssimp":
         a = random.randint(2,9)
         b = random.randint(2,9)*a
+        answers+=[["\\dfrac{%s}{%s}"%(a,b),"=","\\dfrac{%s}{%s}"%(1,int(b/a))]]
         return '''
         \\begin{frame}{Fractions}
         Simplifie
@@ -42,6 +47,7 @@ def print_exercice(ex_type):
         \end{frame}'''%(a,b)
     elif ex_type == "fractionscomp":
         a = [random.randint(2,9) for _ in range(4)]
+        answers+=[["\\dfrac{%s}{%s} = \\dfrac{%s}{%s}"%(a[0],a[1], a[0]*a[3],a[1]*a[3]),"\\dots","\\dfrac{%s}{%s} = \\dfrac{%s}{%s}"%(a[2],a[3], a[2]*a[1],a[3]*a[1])]]
         return '''
         \\begin{frame}{Fractions}
         Compare
@@ -51,6 +57,7 @@ def print_exercice(ex_type):
     elif ex_type == "fractionsadd":
         a = [random.randint(2,9) for _ in range(4)]
         sign =['+', '-'][random.randint(0,1)]
+        answers+=[["","",""]]
         return '''
         \\begin{frame}{Fractions}
         \centering
@@ -59,6 +66,7 @@ def print_exercice(ex_type):
     elif ex_type == "fractionsall":
         a = [random.randint(2,9) for _ in range(4)]
         sign =['\\times ', '+', '-', '\\div '][random.randint(0,3)]
+        answers+=[["","",""]]
         return '''
         \\begin{frame}{Fractions}
         \centering
@@ -82,7 +90,7 @@ def print_exercice(ex_type):
         \end{frame}'''%(a,a*facteur,b)
     elif ex_type == "relatifs":
         a = 0
-        while a==0: 
+        while a==0:
             a = random.randint(-10,10)
         b = "("+str(random.randint(-20,-1))+")"
         sgn = ["+","-"][random.randint(0,1)]
@@ -175,14 +183,14 @@ def print_exercice(ex_type):
         \\tkzDefPoint(3,4){C}
         \\tkzDrawPolygon(A,B,C)
         \\tkzLabelPoints(A,B,C)
-        
+
         \\tkzMarkRightAngle(A,B,C)
-        
+
         \\tkzLabelSegment[below](A,B){%s}
         \\tkzLabelSegment[right](B,C){%s}
         \\tkzLabelSegment[left](C,A){%s}
         \end{tikzpicture}
-        
+
         \\textbf{Quelle est la mesure du côté manquant ?}
         \end{frame}'''%(L[0],min(L[1],L[2]),max(L[1],L[2]))
     elif ex_type == "pythagore-reciproque":
@@ -201,22 +209,22 @@ def print_exercice(ex_type):
         \\tkzDefPoint(3,4){C}
         \\tkzDrawPolygon(A,B,C)
         \\tkzLabelPoints(A,B,C)
-                
+
         \\tkzLabelSegment[below](A,B){%s}
         \\tkzLabelSegment[right](B,C){%s}
         \\tkzLabelSegment[left](C,A){%s}
         \end{tikzpicture}
-        
+
         \\textbf{Ce triangle est-il rectangle ?}
         \end{frame}'''%(L[0],L[1],L[2])
 
 
-        
-        
+
+
 import os, sys, random
 if sys.platform == "ios":
     import clipboard, webbrowser
-        
+
 if len(sys.argv)<2:
     print("Erreur il manque un argument.")
     sys.exit(1)
@@ -226,15 +234,32 @@ string='''\documentclass{beamer}
 \\usepackage[utf8]{inputenc}
 \\usepackage[T1]{fontenc}
 \\usepackage{tkz-euclide}
-\\usetkzobj{all}
+%\\usetkzobj{all}
 \\begin{document}'''
 
-    
+liste_sixieme = ["addition", "soustraction", "multiplication"]
+liste_troisieme = ["fractionssimp","fractionscomp","fractionsadd"]
+answers = []
+correction = 0
+
 liste_exercice = sys.argv[1:]
+if "6eme" in liste_exercice:
+    liste_exercice = random.sample(liste_sixieme, len(liste_sixieme))
+    correction = 1
+if "3eme" in liste_exercice:
+    liste_exercice = random.sample(liste_troisieme, len(liste_troisieme))
+    correction = 1
 for ex_type in liste_exercice:
     string+=print_exercice(ex_type)
-                
+
+if correction == 1:
+    string+='''\\begin{frame}{Corrections}'''
+    for a in answers:
+        string+='''\\begin{block}<+->{}$ '''+a[0]+a[1]+str(a[2])+'''$\\end{block}'''
+    string+='''\\end{frame}'''
+
 string+='''\end{document}'''
+print("%",answers)
 
 if sys.platform == "ios":
     clipboard.set(string)
